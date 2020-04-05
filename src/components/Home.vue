@@ -1,6 +1,6 @@
 <template>
   <!-- Apollo watched Graphql query -->
-  <ApolloQuery :query="require('../graphql/AllCourses.gql')"
+  <ApolloQuery :query="require('../graphql/AllPeople.gql')"
    :variables="{ searchString }">
     <template v-slot="{ result: { loading, error, data } }">
       <!-- Loading -->
@@ -12,23 +12,14 @@
       <!-- Result -->
       <div v-else-if="data" class="result apollo">
         <v-row>
-          <v-col cols="4" v-for="(item, i) in data.Courses" :key="i">
+          <v-col cols="3" v-for="(item, i) in data.People" :key="i">
             <v-card class="mx-auto" max-width="350">
               <v-card-text>
-                <div>{{ item.courseCode }}</div>
-                <p class="courseName">
+                <p class="name">
                   {{ item.name }}
                 </p>
-                <p>{{ item.termsOffered }}</p>
-                <div class="text--primary">
-                  {{ item.description | truncate(200) }}
-                </div>
+                <p>{{ item.age }}</p>
               </v-card-text>
-              <v-card-actions>
-                <v-btn text color="deep-purple accent-4">
-                  Learn More
-                </v-btn>
-              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
@@ -47,7 +38,7 @@ export default {
   name: 'HelloWorld',
 
   data: () => ({
-    searchString: "DGM"
+    searchString: "Test"
   }),
 }
 </script>
@@ -57,7 +48,7 @@ export default {
   padding: 1rem;
 }
 
-.courseName {
+.name {
   font-size: 1.25rem;
   font-weight: 600;
 }

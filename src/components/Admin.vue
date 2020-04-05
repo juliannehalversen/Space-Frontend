@@ -1,12 +1,9 @@
 <template>
   <ApolloMutation
-    :mutation="require('../graphql/AddCourse.gql')"
+    :mutation="require('../graphql/AddPerson.gql')"
     :variables="{
       name,
-      description,
-      defaultCredits,
-      courseCode,
-      termsOffered,
+      age
       }"
       @done="onDone"
   >
@@ -16,26 +13,16 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="12">
-            <v-text-field v-model="name" label="Course name" required filled></v-text-field>
+            <v-text-field v-model="name" label="name" required filled></v-text-field>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" md="12">
-            <v-textarea v-model="description" label="Course description" rows="4" filled clearable></v-textarea>
+            <v-textarea v-model="age" label="age" type="number" rows="4" filled clearable></v-textarea>
           </v-col>
         </v-row>
-        <v-row >
-          <v-col cols="12" md="5">
-          <v-select :items="creditItems" v-model="defaultCredits" filled label="Default credits"></v-select>
-          </v-col>
-          <v-col cols="12" md="2">
-          <v-text-field v-model="courseCode" filled label="Course code"></v-text-field>
-          </v-col>
-          <v-col cols="12" md="5">
-          <v-select :items="termsList" v-model="termsOffered" filled label="Terms offered"></v-select>
-          </v-col>
-        </v-row>
-        <v-btn large color="primary" :disabled="loading" @click="mutate()">Add Course</v-btn>
+       
+        <v-btn large color="primary" :disabled="loading" @click="mutate()">Add Person</v-btn>
         <p v-if="error">An error occurred: {{ error }}</p>
       </v-container>
     </v-form>
@@ -48,12 +35,7 @@ export default {
   data: function() {
     return {
       name: '',
-      description: '',
-      defaultCredits: '',
-      courseCode: '',
-      termsOffered: '',
-      creditItems: ['1', '2', '3'],
-      termsList: ['Fall', 'Spring', 'Fall/Spring', 'Summer', 'Fall/Spring/Summer']
+      age: '',
     }
   },
   methods: {

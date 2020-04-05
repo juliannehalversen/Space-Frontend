@@ -1,9 +1,0 @@
-query AllCourses ($searchString: String) {
-  Courses (searchString: $searchString) {
-    name
-    description
-    defaultCredits
-    courseCode
-    termsOffered
-  }
-}
