@@ -1,0 +1,9 @@
+mutation deleteOnePerson ($id: String!) {
+  deleteOnePerson(where: {
+    id: $id
+    })
+  {
+    id
+    name
+  }
+}

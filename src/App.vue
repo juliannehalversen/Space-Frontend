@@ -5,15 +5,17 @@
       color="primary"
       dark
     >
+    
+    <router-link to="/" class="white--text">GraphQL HOME</router-link>
+    <router-link to="/admin" class="white--text">GraphQL CRUD</router-link>
     </v-app-bar>
 
     <v-content>
       <div>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/admin">Admin</router-link>
+        <router-link to="/">GraphQL HOME</router-link> |
+        <router-link to="/admin">GraphQL CRUD</router-link>
       </div>
-      <!-- <CourseCard/> -->
-      <!-- <Admin/> -->
+
       <router-view/>
     </v-content>
   </v-app>
@@ -38,3 +40,18 @@ export default {
   }),
 };
 </script>
+
+
+<style scoped>
+a {
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+}
+a:hover {
+  color: pink;
+}
+</style>

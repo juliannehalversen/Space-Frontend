@@ -1,0 +1,12 @@
+mutation updatePerson ($id: ID!, $name: String!) {
+  updatePerson(
+    id: $id,
+    name: $name, 
+    
+  ) {
+    id,
+    updatedAt,
+    name
+    age
+  }
+}

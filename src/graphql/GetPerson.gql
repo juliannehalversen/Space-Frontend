@@ -1,0 +1,6 @@
+query getPerson ($id: ID) {
+  Person (id: $id) {
+    name
+    age
+  }
+}
