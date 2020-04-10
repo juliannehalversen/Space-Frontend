@@ -14,6 +14,7 @@
       <div>
         <router-link to="/">GraphQL HOME</router-link> |
         <router-link to="/admin">GraphQL CRUD</router-link>
+        <router-link to="/resthome">REST Home</router-link>
       </div>
 
       <router-view/>
