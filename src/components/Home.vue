@@ -16,6 +16,9 @@
           <v-col cols="3" v-for="(item, i) in data.People" :key="i">
             <v-card class="mx-auto" max-width="350">
               <v-card-text>
+                <p>
+                  {{ item.id }}
+                </p>
                 <p class="name">
                   {{ item.name }}
                 </p>
@@ -75,7 +78,7 @@
       <!-- No result -->
 <!--       <div v-else class="no-result apollo">No result :(</div>
     </template>
-  </ApolloQuery> --> 
+  </ApolloQuery> -->
 </div>
 </template>
 

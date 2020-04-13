@@ -19,7 +19,7 @@
               <v-text-field v-model="name" label="name" required filled></v-text-field>
             </v-col>
             <v-col cols="6" md="6">
-              <v-text-field v-model="age" label="age" type="number" rows="4" required filled></v-text-field>
+              <v-text-field v-model="age" label="age" rows="4" required filled></v-text-field>
             </v-col>
           </v-row>        
           <v-btn large color="primary" :disabled="loading" @click="mutate()">Add Person</v-btn>
@@ -45,10 +45,10 @@
           <v-container>
             <v-card-title>Update a Person</v-card-title>
             <v-row>
-              <v-col cols="6" md="6">
+              <v-col cols="4" md="4">
                 <v-text-field v-model="id" label="id" required filled></v-text-field>
               </v-col>
-              <v-col cols="6" md="6">
+              <v-col cols="4" md="4">
                 <v-text-field v-model="name" label="name" required filled></v-text-field>
               </v-col>
             </v-row>
