@@ -91,7 +91,7 @@ import axios from "axios";
 export default {
     data: () => ({
         people: [],
-        person: []
+        person: [],
   }),
 
     methods: {
@@ -110,13 +110,10 @@ export default {
 
       // GET ONE PERSON
       getOnePerson() {
-        /* const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        } */
+        const personId = `5e4d87b7fec85ddb8c463451`;
+        const url = `http://localhost:3000/admin/single-product/` + personId;
         return axios
-        .get('http://localhost:3000/admin/single-product/5e4d87b7fec85ddb8c463451')
+        .get(url)
         .then(response => {
             console.log(response)
             this.person = response.data;
@@ -127,44 +124,20 @@ export default {
 
     // CREATE PERSON
     createPerson() {
-      const data = { title: 'test', price: 45, description: 'test create', imageURL: 'https://www.syfy.com/sites/syfy/files/styles/1200x680/public/wire/legacy/LukeLightsaber.jpg' };
-      console.log(data);
-      console.log(JSON.stringify(data));
-      fetch(' https://limitless-island-88013.herokuapp.com/admin/add-product', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded'
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-     /*  axios({
-      method: 'post',
-      url: 'http://localhost:3000/admin/add-product',
-      data: {
-        "title": "test",
-        "price": 45,
-        "description": "test create",
-        "imageUrl": "https://www.syfy.com/sites/syfy/files/styles/1200x680/public/wire/legacy/LukeLightsaber.jpg"
-      },
-      headers: {'Content-Type': 'application/json' }
-      })
-      .then(response => {
-          //handle success
-          console.log(response);
-      })
-      .catch(response => {
-          //handle error
-          console.log(response); 
-      });*/
-
+        const url = `http://localhost:3000/admin/add-product`;
+        const data = { 
+          title: 'test', 
+          price: 45, 
+          description: 'test create', 
+          imageUrl: 'https://www.syfy.com/sites/syfy/files/styles/1200x680/public/wire/legacy/LukeLightsaber.jpg' 
+        };
+        return axios
+        .post(url, data)
+        .then(response => {
+            console.log(response)
+            this.person = response.data;
+            console.log(this.person);
+        }).catch(error => console.log(error));
     }
   }
 };
