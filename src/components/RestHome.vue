@@ -110,8 +110,13 @@ export default {
 
       // GET ONE PERSON
       getOnePerson() {
+        /* const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        } */
         return axios
-        .get('http://localhost:3000/admin/single-product', {"productId": "5e4d87b7fec85ddb8c463451"})
+        .get('http://localhost:3000/admin/single-product/5e4d87b7fec85ddb8c463451')
         .then(response => {
             console.log(response)
             this.person = response.data;
@@ -122,17 +127,17 @@ export default {
 
     // CREATE PERSON
     createPerson() {
-      fetch('http://localhost:3000/admin/add-product', {
+      const data = { title: 'test', price: 45, description: 'test create', imageURL: 'https://www.syfy.com/sites/syfy/files/styles/1200x680/public/wire/legacy/LukeLightsaber.jpg' };
+      console.log(data);
+      console.log(JSON.stringify(data));
+      fetch(' https://limitless-island-88013.herokuapp.com/admin/add-product', {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded'
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          title: 'test',
-          price: 45,
-          description: 'test create',
-          imageURL: 'https://www.syfy.com/sites/syfy/files/styles/1200x680/public/wire/legacy/LukeLightsaber.jpg'
-        })
+        body: JSON.stringify(data),
       })
       .then(response => {
         console.log(response);
