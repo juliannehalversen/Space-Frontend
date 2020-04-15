@@ -79,7 +79,11 @@
       </v-form>
         </v-col>
      </v-row> -->
+     <v-card-title>Get a Person</v-card-title>
      <v-btn large color="primary" @click="createPerson()">Create Person</v-btn>
+
+     <v-card-title>Delete a Person</v-card-title>
+     <v-btn large color="primary" @click="deletePerson()">Delete Person</v-btn>
 
 
 </div>
@@ -103,6 +107,7 @@ export default {
         console.log(response);
         this.people = response.data;
         console.log(this.people);
+        
         })
         .catch(error => console.log(error));
       },
@@ -138,7 +143,22 @@ export default {
             this.person = response.data;
             console.log(this.person);
         }).catch(error => console.log(error));
+    },
+
+
+    // DELETE PERSON 
+    deletePerson() {
+      const url = `http://localhost:3000/admin/delete-product`;
+      const data = { 
+          productId: '5e976cbaeb94c321ef11349f'
+        };
+      return axios
+      .post(url, data)
+      .then(response => {
+          alert(response.data);
+      }).catch(error => console.log(error));
     }
+
   }
 };
 
