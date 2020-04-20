@@ -79,8 +79,11 @@
       </v-form>
         </v-col>
      </v-row> -->
-     <v-card-title>Get a Person</v-card-title>
+     <v-card-title>Create a Person</v-card-title>
      <v-btn large color="primary" @click="createPerson()">Create Person</v-btn>
+
+     <v-card-title>Update a Person</v-card-title>
+     <v-btn large color="primary" @click="updatePerson()">Update Person</v-btn>
 
      <v-card-title>Delete a Person</v-card-title>
      <v-btn large color="primary" @click="deletePerson()">Delete Person</v-btn>
@@ -146,11 +149,29 @@ export default {
     },
 
 
+    // UPDATE PERSON 
+    updatePerson() {
+      const url = `http://localhost:3000/admin/edit-product`;
+      const data = { 
+          productId: '5e4d87b7fec85ddb8c463451',
+          title: 'Luke Sky',
+          price: '50',
+          description: 'I find your lack of faith disturbing.',
+          imageUrl: 'test image'
+        };
+      return axios
+      .post(url, data)
+      .then(response => {
+          alert(response.data);
+      }).catch(error => console.log(error));
+    },
+
+
     // DELETE PERSON 
     deletePerson() {
       const url = `http://localhost:3000/admin/delete-product`;
       const data = { 
-          productId: '5e976cbaeb94c321ef11349f'
+          productId: '5e9dd4e513b25d527d8bc303'
         };
       return axios
       .post(url, data)
