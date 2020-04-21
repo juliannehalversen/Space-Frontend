@@ -10,17 +10,17 @@
         </v-col>
         <div>
           <v-row>
-            <v-col cols="3" v-for="(item, i) in galaxies" :key="i">
+            <v-col cols="4" v-for="(item, i) in galaxies" :key="i">
               <v-card class="mx-auto" max-width="350">
                 <v-card-text>
                   <p class="name">
-                    {{ item._id }}
+                    ID: {{ item._id }}
                   </p>
-                  <p>{{ item.category }}</p>
-                  <p>{{ item.name }}</p>
-                  <p>{{ item.constellation }}</p>
-                  <p>{{ item.nameOrigin }}</p>
-                  <p>{{ item.distance }}</p>
+                  <p><strong>Category:</strong> {{ item.category }}</p>
+                  <p><strong>Name:</strong>  {{ item.name }}</p>
+                  <p><strong>Constellation:</strong>  {{ item.constellation }}</p>
+                  <p><strong>Name Origin:</strong>  {{ item.nameOrigin }}</p>
+                  <p><strong>Distance from Milky Way (in millions of light years):</strong>  {{ item.distance }}</p>
                 </v-card-text>
               </v-card>
             </v-col>
