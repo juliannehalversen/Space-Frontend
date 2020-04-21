@@ -8,14 +8,15 @@
     
     <router-link to="/" class="white--text">GraphQL HOME</router-link>
     <router-link to="/admin" class="white--text">GraphQL CRUD</router-link>
+    <router-link to="/resthome" class="white--text">REST Home</router-link>
     </v-app-bar>
 
     <v-content>
-      <div>
+      <!-- <div>
         <router-link to="/">GraphQL HOME</router-link> |
         <router-link to="/admin">GraphQL CRUD</router-link>
         <router-link to="/resthome">REST Home</router-link>
-      </div>
+      </div> -->
 
       <router-view/>
     </v-content>

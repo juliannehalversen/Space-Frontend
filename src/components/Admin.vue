@@ -13,6 +13,8 @@
       <!-- Form here -->
       <v-form>
         <v-container>
+          <h1>RESTFUL GraphQl Home</h1>
+          
           <v-card-title>Create a Person</v-card-title>
           <v-row>
             <v-col cols="6" md="6">

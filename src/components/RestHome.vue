@@ -1,190 +1,266 @@
 <template>
-<div>
+  <div>
+    <v-row>
+      <v-container>
+        <v-col cols="12">
+          <h1>RESTFUL API Home</h1>
+          <v-btn @click="getData" class="dataBtn" id="getDataBtn"
+            >Get Data</v-btn
+          >
+        </v-col>
+        <div>
+          <v-row>
+            <v-col cols="3" v-for="(item, i) in galaxies" :key="i">
+              <v-card class="mx-auto" max-width="350">
+                <v-card-text>
+                  <p class="name">
+                    {{ item._id }}
+                  </p>
+                  <p>{{ item.category }}</p>
+                  <p>{{ item.name }}</p>
+                  <p>{{ item.constellation }}</p>
+                  <p>{{ item.nameOrigin }}</p>
+                  <p>{{ item.distance }}</p>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </div>
+      </v-container>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <v-form>
+          <v-container>
+            <v-card-title>Get a Galaxy</v-card-title>
+            <v-row>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="singleGalaxyID" label="id" required filled></v-text-field>
+            </v-col>
+          </v-row>  
+            <v-btn large color="primary" @click="getOneGalaxy()"
+              >Get One Galaxy</v-btn
+            >
+          </v-container>
+        </v-form>
+        <v-container>
+          <div>
+            <v-row>
+              <v-col cols="3">
+                <v-card class="mx-auto" max-width="350">
+                  <v-card-text>
+                    <p class="name">{{ galaxy._id }}</p>
+                    <p>{{ galaxy.category }}</p>
+                    <p>{{ galaxy.name }}</p>
+                    <p>{{ galaxy.constellation }}</p>
+                    <p>{{ galaxy.nameOrigin }}</p>
+                    <p>{{ galaxy.distance }}</p>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </div>
+        </v-container>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <v-form>
+          <v-container>
+            <v-card-title>Create a Galaxy</v-card-title>
+            <v-row>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createCategory" label="category" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createName" label="name" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createConstellation" label="constellation" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createNameOrigin" label="name origin" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createDistance" label="distance" required filled></v-text-field>
+            </v-col>
+          </v-row>  
+            <v-btn large color="primary" @click="createPerson()">Create Item</v-btn>
+          </v-container>
+        </v-form>
+      </v-col>
+    </v-row>
+
+
+  <v-row>
+      <v-col cols="12">
+        <v-form>
+          <v-container>
+                <v-card-title>Update an Item</v-card-title>
+            <v-row>
+              <v-col cols="6" md="6">
+                <v-text-field v-model="updateID" label="ID" required filled></v-text-field>
+              </v-col>
+              <v-col cols="6" md="6">
+                <v-text-field v-model="updateCategory" label="category" required filled></v-text-field>
+              </v-col>
+              <v-col cols="6" md="6">
+                <v-text-field v-model="updateName" label="name" required filled></v-text-field>
+              </v-col>
+              <v-col cols="6" md="6">
+                <v-text-field v-model="updateConstellation" label="constellation" required filled></v-text-field>
+              </v-col>
+              <v-col cols="6" md="6">
+                <v-text-field v-model="updateNameOrigin" label="name origin" required filled></v-text-field>
+              </v-col>
+              <v-col cols="6" md="6">
+                <v-text-field v-model="updateDistance" label="distance" required filled></v-text-field>
+              </v-col>
+            </v-row>
+            <v-btn large color="primary" @click="updateGalaxy()">Update Item</v-btn>
+          </v-container>
+        </v-form>
+      </v-col>
+    </v-row>
     
-     <v-row>
-         <v-container>
-        <v-col cols="12">
-            
-            <h1>RESTFUL API Home</h1>
-            <v-btn @click="getData" class="dataBtn" id="getDataBtn">Get Data</v-btn>
-        </v-col>
-        <div> 
-        <v-row>
-          <v-col cols="3" v-for="(item, i) in people" :key="i">
-            <v-card class="mx-auto" max-width="350">
-              <v-card-text>
-                <p class="name">
-                  {{ item._id }}
-                </p>
-                <p>{{ item.title }}</p>
-                <p>{{ item.price }}</p>
-                <p>{{ item.description }}</p>
-                <p>{{ item.imageURL }}</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </div>
-         </v-container>
-     </v-row>
 
-
-      <v-row>
-        <v-col cols="12">
+    <v-row>
+      <v-col cols="12">
         <v-form>
-            <v-container>
-                <v-card-title>Get a Person</v-card-title>
-                <!-- <v-row>
-                    <v-col cols="6" md="6">
-                        <v-text-field v-model="id" label="ID" type="number" rows="4" required filled></v-text-field>
-                    </v-col>
-                </v-row>   -->      
-                <v-btn large color="primary" @click="getOnePerson()">Get One Person</v-btn>
-            </v-container>
-      </v-form>
-        </v-col>
-     </v-row>
-     <div> 
-        <v-row>
-          <v-col cols="3">
-            <v-card class="mx-auto" max-width="350">
-              <v-card-text>
-                <p class="name">{{ person._id }}</p>
-                <p>{{ person.title }}</p>
-                <p>{{ person.price }}</p>
-                <p>{{ person.description }}</p>
-                <p>{{ person.imageURL }}</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </div>
+          <v-container>
+            <v-card-title>Delete an Item</v-card-title>
+            <v-row>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="deleteID" label="ID" required filled></v-text-field>
+            </v-col>
+          </v-row>  
+            <v-btn large color="primary" @click="deleteGalaxy()">Delete Item</v-btn>
+          </v-container>
+        </v-form>
+      </v-col>
+    </v-row>
 
 
 
-
-
-   <!--    <v-row>
-        <v-col cols="12">
-        <v-form>
-            <v-container>
-                <v-card-title>Create a Person</v-card-title>
-                <v-row>
-                    <v-col cols="6" md="6">
-                        <v-text-field v-model="id" label="ID" type="number" rows="4" required filled></v-text-field>
-                    </v-col>
-                </v-row>   
-                <v-btn large color="primary" @click="createPerson()">Get One Person</v-btn>
-            </v-container>
-      </v-form>
-        </v-col>
-     </v-row> -->
-     <v-card-title>Create a Person</v-card-title>
-     <v-btn large color="primary" @click="createPerson()">Create Person</v-btn>
-
-     <v-card-title>Update a Person</v-card-title>
-     <v-btn large color="primary" @click="updatePerson()">Update Person</v-btn>
-
-     <v-card-title>Delete a Person</v-card-title>
-     <v-btn large color="primary" @click="deletePerson()">Delete Person</v-btn>
-
-
-</div>
+    
+    
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 
 export default {
-    data: () => ({
-        people: [],
-        person: [],
+  data: () => ({
+    galaxies: [],
+    galaxy: [],
+    singleGalaxyID: '12345',
+    createCategory: 'Star, Galaxy, Planet, etc.',
+    createName: 'Enter Name',
+    createConstellation: 'Enter Constellation',
+    createNameOrigin: 'Name Origin',
+    createDistance: 'Distance from Milky Way (in millions of light years)',
+
+    updateID: '12345',
+    updateCategory: 'Star, Galaxy, Planet, etc.',
+    updateName: 'Enter Name',
+    updateConstellation: 'Enter Constellation',
+    updateNameOrigin: 'Name Origin',
+    updateDistance: 'Distance from Milky Way (in millions of light years)',
+
+    deleteID: '12345'
   }),
 
-    methods: {
-      // GET ALL PEOPLE
-      getData() {
+  methods: {
+    // GET ALL GALAXIES
+    getData() {
       return axios
-        .get("http://localhost:3000/admin/getAllProducts")
+        .get("http://localhost:3000/admin/getAllGalaxies")
         .then(response => {
-        console.log(response);
-        this.people = response.data;
-        console.log(this.people);
-        
+          console.log(response);
+          this.galaxies = response.data;
+          console.log(this.galaxies);
         })
         .catch(error => console.log(error));
-      },
-
-
-      // GET ONE PERSON
-      getOnePerson() {
-        const personId = `5e4d87b7fec85ddb8c463451`;
-        const url = `http://localhost:3000/admin/single-product/` + personId;
-        return axios
-        .get(url)
-        .then(response => {
-            console.log(response)
-            this.person = response.data;
-            console.log(this.person);
-        }).catch(error => console.log(error));
     },
 
+    // GET ONE GALAXY
+    getOneGalaxy() {
+      console.log(this.singleGalaxyID);
+      const galaxyId = this.singleGalaxyID;
+      const url = `http://localhost:3000/admin/single-galaxy/` + galaxyId;
+      return axios
+        .get(url)
+        .then(response => {
+          console.log(response);
+          this.galaxy = response.data;
+          console.log(this.person);
+        })
+        .catch(error => console.log(error));
+    },
 
     // CREATE PERSON
     createPerson() {
-        const url = `http://localhost:3000/admin/add-product`;
-        const data = { 
-          title: 'test', 
-          price: 45, 
-          description: 'test create', 
-          imageUrl: 'https://www.syfy.com/sites/syfy/files/styles/1200x680/public/wire/legacy/LukeLightsaber.jpg' 
-        };
-        return axios
+      const url = `http://localhost:3000/admin/add-galaxy`;
+      const data = {
+        category: this.createCategory,
+        name: this.createName,
+        constellation: this.createConstellation,
+        nameOrigin: this.createNameOrigin,
+        distance: this.createDistance,
+      };
+      return axios
         .post(url, data)
         .then(response => {
-            console.log(response)
-            this.person = response.data;
-            console.log(this.person);
-        }).catch(error => console.log(error));
+          console.log(response);
+          this.galaxy = response.data;
+          console.log(this.galaxy);
+          alert('Galaxy created. Get all to see!');
+        })
+        .catch(error => console.log(error));
     },
 
-
-    // UPDATE PERSON 
-    updatePerson() {
-      const url = `http://localhost:3000/admin/edit-product`;
-      const data = { 
-          productId: '5e4d87b7fec85ddb8c463451',
-          title: 'Luke Sky',
-          price: '50',
-          description: 'I find your lack of faith disturbing.',
-          imageUrl: 'test image'
-        };
+    // UPDATE PERSON
+    updateGalaxy() {
+      console.log(this.updateID);
+      const url = `http://localhost:3000/admin/edit-galaxy`;
+      const data = {
+        galaxyId: this.updateID,
+        category: this.updateCategory,
+        name: this.updateName,
+        constellation: this.updateConstellation,
+        nameOrigin: this.updateNameOrigin,
+        distance: this.updateDistance,
+      };
       return axios
-      .post(url, data)
-      .then(response => {
-          alert(response.data);
-      }).catch(error => console.log(error));
+        .post(url, data)
+        .then(response => {
+          console.log(response);
+          alert('Person updated. Get all to see changes!')
+        })
+        .catch(error => console.log(error));
     },
 
-
-    // DELETE PERSON 
-    deletePerson() {
-      const url = `http://localhost:3000/admin/delete-product`;
-      const data = { 
-          productId: '5e9dd4e513b25d527d8bc303'
-        };
+    // DELETE PERSON
+    deleteGalaxy() {
+      const url = `http://localhost:3000/admin/delete-galaxy`;
+      console.log(this.deleteID);
+      let data = {
+        galaxyId: this.deleteID
+      };
+      console.log(data);
       return axios
-      .post(url, data)
-      .then(response => {
+        .post(url, data)
+        .then(response => {
+          console.log(data);
           alert(response.data);
-      }).catch(error => console.log(error));
+        })
+        .catch(error => console.log(error));
     }
-
   }
 };
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
