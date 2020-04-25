@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- Apollo watched Graphql query -->
-  <ApolloQuery :query="require('../graphql/AllPeople.gql')"
+  <ApolloQuery :query="require('../graphql/AllGalaxies.gql')"
    :variables="{ searchString }">
     <template v-slot="{ result: { loading, error, data } }">
       <!-- Loading -->
@@ -12,17 +12,17 @@
 
       <!-- Result -->
       <div v-else-if="data" class="result apollo">
+        <h1>GraphQl Query All</h1>
         <v-row>
-          <v-col cols="3" v-for="(item, i) in data.People" :key="i">
+          <v-col cols="3" v-for="(item, i) in data.Galaxy" :key="i">
             <v-card class="mx-auto" max-width="350">
               <v-card-text>
-                <p>
-                  {{ item.id }}
-                </p>
-                <p class="name">
-                  {{ item.name }}
-                </p>
-                <p>{{ item.age }}</p>
+                <p>ID: {{ item.id }}</p>
+                <p>Cateogry: {{ item.category }}</p>
+                <p>Name: <strong>{{ item.name }}</strong></p>
+                <p>Constellation: {{ item.constellation }}</p>
+                <p>Name Origin: {{ item.nameOrigin }}</p>
+                <p>Distance from Milky Way (In millions of light years): {{ item.distance }}</p>
               </v-card-text>
             </v-card>
           </v-col>

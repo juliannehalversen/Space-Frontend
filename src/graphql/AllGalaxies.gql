@@ -1,0 +1,11 @@
+query getAllGalaxies {
+  Galaxy {
+    id
+    updatedAt
+    category
+    name
+    constellation,
+    nameOrigin,
+    distance
+	}
+}

@@ -1,0 +1,11 @@
+mutation createGalaxy ($createCategory: String!, $createName: String!, $createConstellation: String!, $createNameOrigin: String! $createDistance: String!) {
+  createGalaxy (
+    category: $createCategory
+    name: $createName,
+    constellation: $createConstellation,
+    nameOrigin: $createNameOrigin,
+    distance: $createDistance
+  ) {
+      id
+  }
+}

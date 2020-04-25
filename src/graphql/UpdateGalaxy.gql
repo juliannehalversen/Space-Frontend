@@ -1,0 +1,18 @@
+mutation updateGalaxy ($id: ID!, $category: String!, $name: String!, $constellation: String!, $nameOrigin: String!, $distance: String!) {
+  updateGalaxy(
+    id: $id,
+    category: $category,
+    name: $name, 
+    constellation: $constellation,
+    nameOrigin: $nameOrigin,
+    distance: $distance
+  ) {
+    id,
+    updatedAt,
+    category
+    name
+    constellation,
+    nameOrigin,
+    distance
+  }
+}

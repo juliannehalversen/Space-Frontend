@@ -1,0 +1,13 @@
+mutation deleteOneGalaxy ($removeId: String!) {
+  deleteOneGalaxy(where: {
+    id: $removeId
+    })
+  {
+    id
+    category
+    name
+    constellation
+    nameOrigin
+    distance
+  }
+}

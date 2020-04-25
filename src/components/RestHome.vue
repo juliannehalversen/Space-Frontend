@@ -4,8 +4,9 @@
       <v-container>
         <v-col cols="12">
           <h1>RESTFUL API Home</h1>
+          <br>
           <v-btn @click="getData" class="dataBtn" id="getDataBtn"
-            >Get Data</v-btn
+            >Get All Data</v-btn
           >
         </v-col>
         <div>
@@ -181,7 +182,7 @@ export default {
         .then(response => {
           console.log(response);
           this.galaxies = response.data;
-          console.log(this.galaxies);
+          console.log(JSON.stringify(this.galaxies));
         })
         .catch(error => console.log(error));
     },

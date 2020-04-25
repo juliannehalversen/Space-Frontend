@@ -1,11 +1,14 @@
 <template>
 <div>
-<!-- CREATE PERSON -->
+<!-- CREATE ITEM -->
   <ApolloMutation
-    :mutation="require('../graphql/AddPerson.gql')"
+    :mutation="require('../graphql/AddGalaxy.gql')"
     :variables="{
-      name,
-      age
+      createCategory,
+      createName,
+      createConstellation,
+      createNameOrigin,
+      createDistance
       }"
       @done="onDone"
   >
@@ -13,18 +16,27 @@
       <!-- Form here -->
       <v-form>
         <v-container>
-          <h1>RESTFUL GraphQl Home</h1>
+          <h1>GraphQl CRUD</h1>
           
-          <v-card-title>Create a Person</v-card-title>
+          <v-card-title>Create an Item</v-card-title>
           <v-row>
             <v-col cols="6" md="6">
-              <v-text-field v-model="name" label="name" required filled></v-text-field>
+              <v-text-field v-model="createCategory" label="category" required filled></v-text-field>
             </v-col>
             <v-col cols="6" md="6">
-              <v-text-field v-model="age" label="age" rows="4" required filled></v-text-field>
+              <v-text-field v-model="createName" label="name" rows="4" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createConstellation" label="constellation" rows="4" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createNameOrigin" label="name origin" rows="4" required filled></v-text-field>
+            </v-col>
+            <v-col cols="6" md="6">
+              <v-text-field v-model="createDistance" label="distance" rows="4" required filled></v-text-field>
             </v-col>
           </v-row>        
-          <v-btn large color="primary" :disabled="loading" @click="mutate()">Add Person</v-btn>
+          <v-btn large color="primary" :disabled="loading" @click="mutate()">Add Item</v-btn>
           <p v-if="error">An error occurred: {{ error }}</p>
         </v-container>
       </v-form>
@@ -33,10 +45,14 @@
 
 <!-- UPDATE PERSON -->
 <ApolloMutation
-      :mutation="require('../graphql/UpdatePerson.gql')"
+      :mutation="require('../graphql/UpdateGalaxy.gql')"
       :variables="{
         id,
-        name
+        category,
+        name,
+        constellation,
+        nameOrigin,
+        distance
         }"
         @done="onDone"
     >
@@ -45,17 +61,29 @@
         <!-- Form here -->
         <v-form>
           <v-container>
-            <v-card-title>Update a Person</v-card-title>
+            <v-card-title>Update an Item</v-card-title>
             <v-row>
               <v-col cols="4" md="4">
                 <v-text-field v-model="id" label="id" required filled></v-text-field>
               </v-col>
               <v-col cols="4" md="4">
+                <v-text-field v-model="category" label="category" required filled></v-text-field>
+              </v-col>
+              <v-col cols="4" md="4">
                 <v-text-field v-model="name" label="name" required filled></v-text-field>
+              </v-col>
+              <v-col cols="4" md="4">
+                <v-text-field v-model="constellation" label="constellation" required filled></v-text-field>
+              </v-col>
+              <v-col cols="4" md="4">
+                <v-text-field v-model="nameOrigin" label="name origin" required filled></v-text-field>
+              </v-col>
+              <v-col cols="4" md="4">
+                <v-text-field v-model="distance" label="distance" required filled></v-text-field>
               </v-col>
             </v-row>
           
-            <v-btn large color="primary" :disabled="loading" @click="mutate()">Update Person</v-btn>
+            <v-btn large color="primary" :disabled="loading" @click="mutate()">Update Item</v-btn>
             <p v-if="error">An error occurred: {{ error }}</p>
           </v-container>
         </v-form>
@@ -66,11 +94,9 @@
 
 <!-- DELETE PERSON -->
     <ApolloMutation
-      :mutation="require('../graphql/RemovePerson.gql')"
+      :mutation="require('../graphql/RemoveGalaxy.gql')"
       :variables="{
-        id,
-        name,
-        age
+        removeId,
         }"
         @done="onDone"
     >
@@ -79,14 +105,14 @@
         <!-- Form here -->
         <v-form>
           <v-container>
-            <v-card-title>Delete a Person</v-card-title>
+            <v-card-title>Delete an Item</v-card-title>
             <v-row>
               <v-col cols="12" md="12">
-                <v-text-field v-model="id" label="id" required filled></v-text-field>
+                <v-text-field v-model="removeId" label="id" required filled></v-text-field>
               </v-col>
             </v-row>
           
-            <v-btn large color="primary" :disabled="loading" @click="mutate()">Delete Person</v-btn>
+            <v-btn large color="primary" :disabled="loading" @click="mutate()">Delete Item</v-btn>
             <p v-if="error">An error occurred: {{ error }}</p>
           </v-container>
         </v-form>
@@ -99,9 +125,20 @@
 export default {
   data: function() {
     return {
+      createCategory: '',
+      createName: '',
+      createConstellation: '',
+      createNameOrigin: '',
+      createDistance: '',
+
       id: '',
+      category: '',
       name: '',
-      age: '',
+      constellation: '',
+      nameOrigin: '',
+      distance: '',
+
+      removeId: '',
     }
   },
   methods: {
