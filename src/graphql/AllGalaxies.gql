@@ -1,5 +1,5 @@
 query getAllGalaxies {
-  Galaxy {
+  Galaxies {
     id
     updatedAt
     category

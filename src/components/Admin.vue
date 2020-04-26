@@ -3,17 +3,20 @@
 
 
 
+<v-container>
+
 
 
     <v-row>
       <v-col>
-        <h1>Search</h1><br>
-        <v-text-field v-model="searchString" label="Search for an item..."></v-text-field>
+        <h1>GraphQl CRUD</h1>
+        <v-card-title>Get an Item by ID</v-card-title>
+        <v-text-field v-model="idInput" label="Enter Item ID..."></v-text-field>
       </v-col>
     </v-row>
   <!-- Apollo watched Graphql query -->
-  <ApolloQuery :query="require('../graphql/SearchGalaxy.gql')"
-   :variables="{ searchString }">
+  <ApolloQuery :query="require('../graphql/GetOne.gql')"
+   :variables="{ idInput }">
     <template v-slot="{ result: { loading, error, data } }">
       <!-- Loading -->
       <div v-if="loading" class="loading apollo">Loading...</div>
@@ -22,9 +25,9 @@
       <v-alert type="error" v-else-if="error" class="error apollo">An error occured</v-alert>
 
       <!-- Result -->
-      <div v-else-if="data" class="result apollo">        
-       <v-row>
-          <v-col cols="3" v-for="(item, i) in data.Galaxy" :key="i">
+      <div v-else-if="data" class="result apollo">
+        <v-row>
+          <v-col cols="3" v-for="(item, i) in data" :key="i">
             <v-card class="mx-auto" max-width="350">
               <v-card-text>
                 <p>ID: {{ item.id }}</p>
@@ -46,6 +49,48 @@
 
 
 
+    <v-row>
+      <v-col>
+        <v-card-title>Search all items</v-card-title>
+        <v-text-field v-model="searchstring" label="Search for an item..."></v-text-field>
+      </v-col>
+    </v-row>
+  <!-- Apollo watched Graphql query -->
+  <ApolloQuery :query="require('../graphql/SearchGalaxy.gql')"
+   :variables="{ searchstring }">
+    <template v-slot="{ result: { loading, error, data } }">
+      <!-- Loading -->
+      <div v-if="loading" class="loading apollo">Loading...</div>
+
+      <!-- Error -->
+      <v-alert type="error" v-else-if="error" class="error apollo">An error occured</v-alert>
+
+      <!-- Result -->
+      <div v-else-if="data" class="result apollo">        
+       <v-row>
+          <v-col cols="3" v-for="(item, i) in data.filterGalaxies" :key="i">
+            <v-card class="mx-auto" max-width="350">
+              <v-card-text>
+                <p>ID: {{ item.id }}</p>
+                <p>Cateogry: {{ item.category }}</p>
+                <p>Name: <strong>{{ item.name }}</strong></p>
+                <p>Constellation: {{ item.constellation }}</p>
+                <p>Name Origin: {{ item.nameOrigin }}</p>
+                <p>Distance from Milky Way (In millions of light years): {{ item.distance }}</p>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+
+      <!-- No result -->
+      <div v-else class="no-result apollo">No result :(</div>
+    </template>
+  </ApolloQuery>
+
+</v-container>
+
+
 <!-- CREATE ITEM -->
   <ApolloMutation
     :mutation="require('../graphql/AddGalaxy.gql')"
@@ -62,7 +107,6 @@
       <!-- Form here -->
       <v-form>
         <v-container>
-          <h1>GraphQl CRUD</h1>
           
           <v-card-title>Create an Item</v-card-title>
           <v-row>
@@ -197,7 +241,7 @@ v-text-field__details {
 <script>
 export default {
    data: () => ({
-    searchString: "Milky Way",
+    searchstring: "Milky Way",
     idInput: '',
 
     createCategory: '',

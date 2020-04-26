@@ -1,0 +1,10 @@
+query getOne ($idInput: ID) {
+  Galaxy (id: $idInput) {
+    id
+    category
+    name
+    constellation
+    nameOrigin
+    distance
+  }
+}

@@ -19,7 +19,7 @@
       <div v-else-if="data" class="result apollo">
         <h1>GraphQl Query All</h1>
         <v-row>
-          <v-col cols="3" v-for="(item, i) in data.Galaxy" :key="i">
+          <v-col cols="3" v-for="(item, i) in data.Galaxies" :key="i">
             <v-card class="mx-auto" max-width="350">
               <v-card-text>
                 <p>ID: {{ item.id }}</p>
