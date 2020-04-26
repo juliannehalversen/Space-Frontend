@@ -1,0 +1,9 @@
+query filterGalaxies ($searchString: String! ){
+  filterGalaxies (searchString: $searchString) {
+   	category
+    name
+    constellation,
+    nameOrigin,
+    distance
+  }
+}
