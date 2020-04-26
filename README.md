@@ -1,24 +1,26 @@
-# final-project-frontend
+# Space Application Frontend
 
-## Project setup
+To start the GraphQL server then follow the instructions in [this repository](https://github.com/juliannehalversen/Space-GraphQL-Server). Otherwise, you will still have access to the REST server and CRUD functionality.
+
+## How to use
+
+### 1. Clone project to desired location
+
 ```
-yarn install
+git clone https://github.com/juliannehalversen/Space-Frontend.git
 ```
 
-### Compiles and hot-reloads for development
+### 2. Install project dependencies
+
 ```
+cd Space-Frontend
+npm install
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### 3. Open project in browser
 
-### Lints and fixes files
-```
-yarn lint
-```
+[localhost:8080](http://localhost:8080/#/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 4. Experiment with my NodeJs REST API and my GraphQL API! 
+

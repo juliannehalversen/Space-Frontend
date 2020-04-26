@@ -5,7 +5,7 @@
         <v-col cols="12">
           <h1>RESTFUL API Home</h1>
           <br>
-          <v-btn @click="getData" class="dataBtn" id="getDataBtn"
+          <v-btn @click="getData" class="button" id="getDataBtn"
             >Get All Data</v-btn
           >
         </v-col>
@@ -40,7 +40,7 @@
               <v-text-field v-model="singleGalaxyID" label="id" required filled></v-text-field>
             </v-col>
           </v-row>  
-            <v-btn large color="primary" @click="getOneGalaxy()"
+            <v-btn large class="button" @click="getOneGalaxy()"
               >Get One Galaxy</v-btn
             >
           </v-container>
@@ -88,7 +88,7 @@
               <v-text-field v-model="createDistance" label="distance" required filled></v-text-field>
             </v-col>
           </v-row>  
-            <v-btn large color="primary" @click="createPerson()">Create Item</v-btn>
+            <v-btn large class="button" @click="createPerson()">Create Item</v-btn>
           </v-container>
         </v-form>
       </v-col>
@@ -120,7 +120,7 @@
                 <v-text-field v-model="updateDistance" label="distance" required filled></v-text-field>
               </v-col>
             </v-row>
-            <v-btn large color="primary" @click="updateGalaxy()">Update Item</v-btn>
+            <v-btn large class="button" @click="updateGalaxy()">Update Item</v-btn>
           </v-container>
         </v-form>
       </v-col>
@@ -137,7 +137,7 @@
               <v-text-field v-model="deleteID" label="ID" required filled></v-text-field>
             </v-col>
           </v-row>  
-            <v-btn large color="primary" @click="deleteGalaxy()">Delete Item</v-btn>
+            <v-btn large class="button" @click="deleteGalaxy()">Delete Item</v-btn>
           </v-container>
         </v-form>
       </v-col>
@@ -150,6 +150,17 @@
   </div>
 </template>
 
+
+<style scoped>
+h1 {
+  color: #FF19B3;
+}
+button {
+  color: white !important;
+  background-color: #FF19B3 !important;
+}
+</style>
+
 <script>
 import axios from "axios";
 
@@ -157,7 +168,7 @@ export default {
   data: () => ({
     galaxies: [],
     galaxy: [],
-    singleGalaxyID: '12345',
+    singleGalaxyID: '',
     createCategory: 'Star, Galaxy, Planet, etc.',
     createName: 'Enter Name',
     createConstellation: 'Enter Constellation',
@@ -171,14 +182,14 @@ export default {
     updateNameOrigin: 'Name Origin',
     updateDistance: 'Distance from Milky Way (in millions of light years)',
 
-    deleteID: '12345'
+    deleteID: ''
   }),
 
   methods: {
     // GET ALL GALAXIES
     getData() {
       return axios
-        .get("http://localhost:3000/admin/getAllGalaxies")
+        .get("https://limitless-island-88013.herokuapp.com/admin/getAllGalaxies")
         .then(response => {
           console.log(response);
           this.galaxies = response.data;
@@ -191,7 +202,7 @@ export default {
     getOneGalaxy() {
       console.log(this.singleGalaxyID);
       const galaxyId = this.singleGalaxyID;
-      const url = `http://localhost:3000/admin/single-galaxy/` + galaxyId;
+      const url = `https://limitless-island-88013.herokuapp.com/admin/single-galaxy/` + galaxyId;
       return axios
         .get(url)
         .then(response => {
@@ -204,7 +215,7 @@ export default {
 
     // CREATE PERSON
     createPerson() {
-      const url = `http://localhost:3000/admin/add-galaxy`;
+      const url = `https://limitless-island-88013.herokuapp.com/admin/add-galaxy`;
       const data = {
         category: this.createCategory,
         name: this.createName,
@@ -226,7 +237,7 @@ export default {
     // UPDATE PERSON
     updateGalaxy() {
       console.log(this.updateID);
-      const url = `http://localhost:3000/admin/edit-galaxy`;
+      const url = `https://limitless-island-88013.herokuapp.com/admin/edit-galaxy`;
       const data = {
         galaxyId: this.updateID,
         category: this.updateCategory,
@@ -246,7 +257,7 @@ export default {
 
     // DELETE PERSON
     deleteGalaxy() {
-      const url = `http://localhost:3000/admin/delete-galaxy`;
+      const url = `https://limitless-island-88013.herokuapp.com/admin/delete-galaxy`;
       console.log(this.deleteID);
       let data = {
         galaxyId: this.deleteID

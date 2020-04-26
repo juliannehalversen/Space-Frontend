@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="#AA00CC"
       dark
     >
     
@@ -56,4 +56,7 @@ a {
 a:hover {
   color: pink;
 }
+/* * {
+  background-image: url('./assets/stars2.jpg');
+} */
 </style>

@@ -1,8 +1,12 @@
 <template>
-<div>
+<div class="spaceBackground">
+
+<v-row>
+  <v-container>
   <!-- Apollo watched Graphql query -->
   <ApolloQuery :query="require('../graphql/AllGalaxies.gql')"
    :variables="{ searchString }">
+
     <template v-slot="{ result: { loading, error, data } }">
       <!-- Loading -->
       <div v-if="loading" class="loading apollo">Loading...</div>
@@ -11,6 +15,7 @@
       <div v-else-if="error" class="error apollo">An error occured</div>
 
       <!-- Result -->
+      
       <div v-else-if="data" class="result apollo">
         <h1>GraphQl Query All</h1>
         <v-row>
@@ -33,6 +38,8 @@
       <div v-else class="no-result apollo">No result :(</div>
     </template>
   </ApolloQuery>
+  </v-container>
+</v-row>
 
 
 
@@ -98,9 +105,17 @@ export default {
 .result {
   padding: 1rem;
 }
-
+h1 {
+  color: white;
+  margin-bottom: 30px;
+}
 .name {
   font-size: 1.25rem;
   font-weight: 600;
+}
+.spaceBackground {
+  background-image: url('../assets/stars2.jpg');
+  height: 100%;
+  background-repeat: repeat-y;
 }
 </style>
