@@ -70,7 +70,7 @@
       <v-col cols="12">
         <v-form>
           <v-container>
-            <v-card-title>Create a Galaxy</v-card-title>
+            <v-card-title>Create an Item</v-card-title>
             <v-row>
             <v-col cols="6" md="6">
               <v-text-field v-model="createCategory" label="category" required filled></v-text-field>
@@ -189,7 +189,7 @@ export default {
     // GET ALL GALAXIES
     getData() {
       return axios
-        .get("https://limitless-island-88013.herokuapp.com/admin/getAllGalaxies")
+        .get("http://localhost:3000/admin/getAllGalaxies")
         .then(response => {
           console.log(response);
           this.galaxies = response.data;
@@ -202,7 +202,7 @@ export default {
     getOneGalaxy() {
       console.log(this.singleGalaxyID);
       const galaxyId = this.singleGalaxyID;
-      const url = `https://limitless-island-88013.herokuapp.com/admin/single-galaxy/` + galaxyId;
+      const url = `http://localhost:3000/admin/single-galaxy/` + galaxyId;
       return axios
         .get(url)
         .then(response => {
@@ -215,7 +215,7 @@ export default {
 
     // CREATE PERSON
     createPerson() {
-      const url = `https://limitless-island-88013.herokuapp.com/admin/add-galaxy`;
+      const url = `http://localhost:3000/admin/add-galaxy`;
       const data = {
         category: this.createCategory,
         name: this.createName,
@@ -237,7 +237,7 @@ export default {
     // UPDATE PERSON
     updateGalaxy() {
       console.log(this.updateID);
-      const url = `https://limitless-island-88013.herokuapp.com/admin/edit-galaxy`;
+      const url = `http://localhost:3000/admin/edit-galaxy`;
       const data = {
         galaxyId: this.updateID,
         category: this.updateCategory,
@@ -257,7 +257,7 @@ export default {
 
     // DELETE PERSON
     deleteGalaxy() {
-      const url = `https://limitless-island-88013.herokuapp.com/admin/delete-galaxy`;
+      const url = `http://localhost:3000/admin/delete-galaxy`;
       console.log(this.deleteID);
       let data = {
         galaxyId: this.deleteID

@@ -1,6 +1,6 @@
 # Space Application Frontend
 
-To start the GraphQL server then follow the instructions in [this repository](https://github.com/juliannehalversen/Space-GraphQL-Server). Otherwise, you will still have access to the REST server and CRUD functionality.
+To start the GraphQL server then follow the instructions in [this repository](https://github.com/juliannehalversen/Space-GraphQL-Server). To start the REST server, follow the instructions in [this respository](https://github.com/juliannehalversen/Space-REST-Server).
 
 ## How to use
 
